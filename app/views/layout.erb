@@ -15,11 +15,15 @@
   </head>
   <body>
     <div class="wrapper">
+
+    <div class="navigation">
       <% if logged_in? %>
-      <a href='/'> All Reviews </a>
-      <a href='/'> Create a Review </a>
-      <a href='/logout'> Log Out </a>
+        <a href='/'> All Reviews </a>
+        <a href='/'> Create a Review </a>
+        <a href='/logout'> Log Out </a>
       <%end%>
+    </div>
+    
         <%= yield %>
 
       <footer class="branding">
