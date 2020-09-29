@@ -1,17 +1,14 @@
 class UsersController < ApplicationController
     
-    # Read
+  
     get "/login" do  
-        erb :login
+        erb :'/users/login'
     end
 
     post "/login" do 
-        # puts params 
         @user = User.find_by(email: params[:email]) 
 
         if user && user.authenticate(params[:password])
-            # users home page
-            # binding.pry
             session[:user_id] = @user.id
             redirect "/users/#{user.id}"
         else
@@ -20,7 +17,24 @@ class UsersController < ApplicationController
     end
 
     get "/users/:id" do 
-        "Users SHow page"
+        @user = User.find_by(id: params[:id])
+        erb :'/users/show'
+    end
+
+    get '/signup' do
+        erb :'users/signup'
+    end
+
+    post '/users' do 
+        @user = User.create(params)
+        @user.save
+        session[:user_id] = @user.id
+        redirect "/users/#{@user.id}"
+    end
+
+    get '/logout' do 
+        session.clear
+        redirect '/'
     end
 
 end
