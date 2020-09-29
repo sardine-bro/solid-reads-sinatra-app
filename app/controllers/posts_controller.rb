@@ -15,9 +15,9 @@ class PostsController < ApplicationController
     end
 
     post '/posts' do
-        post = Post.create(title: params[:title], review: params[:review], user_id: current_user.id)
+        @post = Post.create(title: params[:title], review: params[:review], user_id: current_user.id)
 
-        redirect "/posts/#{post.id}"
+        redirect "/posts/#{@post.id}"
     end
 
 # R/Show
@@ -29,10 +29,24 @@ class PostsController < ApplicationController
 
     
 # U
-    get '/articles/:id/edit' do  #load edit form
-        @article = Article.find_by_id(params[:id])
-        erb :edit
+    get '/posts/:id/edit' do  #load edit form
+        @post = Post.find(params[:id])
+        erb :'/posts/edit'
+    end
+
+    patch '/posts/:id' do #edit action
+        @post = Post.find(params[:id])
+        @post.update(title: params[:title], review: params[:review])
+        
+        redirect "/posts/#{@post.id}"
     end
 
 # D
+
+    delete '/posts/:id' do 
+        @post = Post.find(params[:id])
+        @post.destroy
+
+        redirect '/posts'
+    end
 end
