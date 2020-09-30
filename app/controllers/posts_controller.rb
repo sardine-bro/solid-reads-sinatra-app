@@ -42,7 +42,13 @@ class PostsController < ApplicationController
 # U
     get '/posts/:id/edit' do  #load edit form
         @post = Post.find(params[:id])
-        erb :'/posts/edit'
+       if authorized_to_edit?(@post)
+            erb :'/posts/edit'
+       else
+            flash[:error] = "Yikes, looks like you are not authorized to edit this post!"
+
+            redirect '/posts'
+       end
     end
 
     patch '/posts/:id' do #edit action
