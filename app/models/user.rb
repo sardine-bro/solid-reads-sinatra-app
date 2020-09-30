@@ -3,5 +3,5 @@ class User < ActiveRecord::Base
     
     has_secure_password
    
-    # add user validations
+    validates :name, :email, :password, :profile_bio, presence: true
 end

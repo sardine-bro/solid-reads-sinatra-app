@@ -15,9 +15,14 @@ class PostsController < ApplicationController
     end
 
     post '/posts' do
-        @post = Post.create(title: params[:title], review: params[:review], user_id: current_user.id)
-
-        redirect "/posts/#{@post.id}"
+        @post = Post.new(title: params[:title], review: params[:review], user_id: current_user.id)
+        if @post.save
+            flash[:message] = "Your Review has been posted!"
+            redirect "/posts/#{@post.id}"
+        else
+            flash[:error] = "Review creation has failed: Please fill out all inputs"
+            redirect '/posts/new'
+        end
     end
 
 # R/Show
