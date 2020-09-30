@@ -8,6 +8,8 @@ class ApplicationController < Sinatra::Base
    
     enable :sessions 
     set :session_secret, "super_duper_secret_guest_1234"
+
+    register Sinatra::Flash
   end
 
   get "/" do
