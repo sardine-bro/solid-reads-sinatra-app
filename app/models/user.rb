@@ -1,8 +1,8 @@
 class User < ActiveRecord::Base
     has_many :posts
-    
+    # has its own validator for password
     has_secure_password
    
-    validates :name, :email, :password, uniqueness: true
-    validates :profile_bio, presence: true
+    validates :email, uniqueness: true
+    validates :name, :profile_bio, presence: true
 end

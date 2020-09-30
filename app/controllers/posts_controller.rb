@@ -11,7 +11,12 @@ class PostsController < ApplicationController
 
 # C/New
     get '/posts/new' do 
-        erb :'/posts/new'
+        if logged_in?
+            erb :'/posts/new'
+        else
+            flash[:error] = "You must be logged in to create a review"
+            redirect '/'
+        end
     end
 
     post '/posts' do

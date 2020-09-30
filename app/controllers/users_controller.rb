@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-    
+
     get "/login" do  
         erb :'/users/login'
     end
@@ -27,6 +27,14 @@ class UsersController < ApplicationController
     end
 
     post '/users' do 
+        # @user = User.new(params)
+        # if @user.save
+        #     session[:user_id] = @user.id
+        #     redirect "/users/#{@user.id}"
+        # else 
+        #     flash[:error] = "Sign up incomplete: #{@user.errors.full_messages.to_sentence}"
+        #     redirect '/users/signup'
+        # end
         @user = User.create(params)
         @user.save
         session[:user_id] = @user.id
