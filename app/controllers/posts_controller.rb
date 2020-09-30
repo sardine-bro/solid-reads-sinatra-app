@@ -20,7 +20,8 @@ class PostsController < ApplicationController
             flash[:message] = "Your Review has been posted!"
             redirect "/posts/#{@post.id}"
         else
-            flash[:error] = "Review creation has failed: Please fill out all inputs"
+            # binding.pry
+            flash[:error] = "Review creation has failed: #{@post.errors.full_messages.to_sentence}"
             redirect '/posts/new'
         end
     end
