@@ -1,5 +1,5 @@
 class AddingAuthorToPosts < ActiveRecord::Migration
   def change
-    add_column :posts, :authors, :string
+    add_column :posts, :author, :string
   end
 end
