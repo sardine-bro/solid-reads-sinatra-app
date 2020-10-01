@@ -2,6 +2,9 @@
 
 <% @posts.each do |post|%>
     <h4><a href="/posts/<%= post.id %>"><%= post.title%></a></h4>
+    <br>
+    <strong>Book Author: <%= post.author %></strong>
+    <br>
     <strong>Posted At: <%= post.created_at %></strong>
     <p><%= post.review %></p>
     <p>By: <%= post.user.name%></p>
