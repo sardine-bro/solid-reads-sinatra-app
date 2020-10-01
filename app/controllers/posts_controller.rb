@@ -20,7 +20,7 @@ class PostsController < ApplicationController
     end
 
     post '/posts' do
-        @post = Post.new(title: params[:title], review: params[:review], user_id: current_user.id)
+        @post = Post.new(title: params[:title], review: params[:review], author: params[:author], user_id: current_user.id)
         if @post.save
             flash[:message] = "Your Review has been posted!"
             redirect "/posts/#{@post.id}"
