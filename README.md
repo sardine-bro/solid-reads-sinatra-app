@@ -1,6 +1,6 @@
 # Solid Reads
 
-Solid Reads is a Ruby Sinatra web app for posting book reviews.
+Solid Reads is a simple Sinatra web app for posting book reviews.
 
 ## Installation
 
