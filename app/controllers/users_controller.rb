@@ -17,6 +17,15 @@ class UsersController < ApplicationController
         end
     end
 
+    get '/users/most-reviews' do
+        # binding.pry
+        @user = User.all
+        @user.max_by{|user| user.posts.count}
+        
+        # binding.pry
+        erb :'/users/most'
+    end
+    
     get "/users/:id" do 
         @user = User.find_by(id: params[:id])
         erb :'/users/show'
@@ -37,9 +46,17 @@ class UsersController < ApplicationController
         end
     end
 
+
     get '/logout' do 
         session.clear
         redirect '/'
     end
 
 end
+
+#write a custom method so that when a user visits /users/most-reviews, they are able to see (by anymeans necessary, there are a lot of options for how to do this, you pick which one) the user with th emost reviwes. 
+
+#HINT: Use the max_by ruby method to help you find the user with the most reviews 
+
+#If you run into a wall while you're debugging, make sure you're checking which route you're actually hittin gin the controller 
+
