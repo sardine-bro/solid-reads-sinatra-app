@@ -19,9 +19,10 @@ class UsersController < ApplicationController
 
     get '/users/most-reviews' do
         # binding.pry
-        @user = User.all
-        @user.max_by{|user| user.posts.count}
-        
+        @users = User.all
+        @most_review = @users.max_by{|user| user.posts.count}
+        # most_review.name
+
         # binding.pry
         erb :'/users/most'
     end
